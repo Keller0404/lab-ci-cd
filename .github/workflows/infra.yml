@@ -1,4 +1,4 @@
-name: 'Deploy Infra'
+name: 'TerraForm Infra'
 
 on:
   push:
@@ -9,7 +9,6 @@ env:
   TF_LINT_VERSION: v0.52.0
   DESTROY: false
   ENVIRONMENT: prod
-
 jobs:
   terraform:
     name: 'Deploy Infra'
@@ -22,10 +21,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v4
 
     - name: AWS | Configure credentials
-      uses: aws-actions/configure-aws-credentials@v5
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -51,7 +50,7 @@ jobs:
         fi
 
     - name: Terraform | Setup
-      uses: hashicorp/setup-terraform@v4
+      uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: ${{ env.TF_VERSION }}
 
